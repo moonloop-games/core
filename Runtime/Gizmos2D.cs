@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Moonloop.Core {
 
-public static class MoonGizmos
+public static class Gizmos2D
 {
     public static void DrawCircle2D(Vector2 pos, float radius)
     {

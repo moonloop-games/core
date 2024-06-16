@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Moonloop.Core {
 
-public static class Gizmo
+public static class Gizmos3D
 {
 		public static void DrawCircle(Vector3 pos, float radius, bool fill = false)
 		{
