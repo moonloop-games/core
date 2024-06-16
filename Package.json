@@ -1,0 +1,14 @@
+{
+    "name": "com.moonloop.core",
+    "description": "Moonloop's core tools which are shared between many other moonloop packages.",
+    "version": "1.0.0",
+    "unity": "6000.0",
+    "displayName": "MOONLOOP core",
+    "author": {
+        "name": "moonloop games"
+    },
+    "dependencies": {
+
+    }
+  }
+  
