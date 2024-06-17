@@ -3,7 +3,7 @@ using Sirenix.OdinInspector;
 
 namespace Moonloop.Core
 {
-	[CreateAssetMenu(menuName = "Arachnid/Curve Object")]
+	[CreateAssetMenu(menuName = "Moonloop/Curve Object")]
 	public class CurveObject : ScriptableObject
 	{
 		[HideLabel, InlineProperty]
