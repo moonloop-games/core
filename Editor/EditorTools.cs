@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Arachnid
+namespace Moonloop.Core.Editor
 {
     public static class EditorTools
     {
