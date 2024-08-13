@@ -23,5 +23,17 @@ namespace Moonloop.Core {
 			#endif
 			return true;
 		}
+
+		/// <summary>
+		/// Set the object as dirty in the editor, so the editor knows to save it. If you do any changes to an object in the editor
+		/// via script, you should call this to make sure the changes are saved.
+		/// This function is wrapped in a UNITY_EDITOR define so it won't be called in builds.
+		/// </summary>
+		public static void SetDirty(Object obj)
+        {
+            #if UNITY_EDITOR
+            UnityEditor.EditorUtility.SetDirty(obj);
+            #endif
+        }
 	}
 }
