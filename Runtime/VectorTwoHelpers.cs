@@ -16,5 +16,10 @@ namespace Moonloop.Core {
                 input.y >= 0 ? 1 : -1
             );
         }
+
+        public static bool Approximately(this Vector2 a, Vector2 b) 
+        {
+            return Mathf.Approximately(a.x, b.x) && Mathf.Approximately(a.y, b.y);
+        }
     }
 }
