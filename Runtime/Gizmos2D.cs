@@ -4,17 +4,17 @@ namespace Moonloop.Core {
 
 public static class Gizmos2D
 {
-    public static void DrawCircle2D(Vector2 pos, float radius)
+    public static void DrawCircle(Vector2 pos, float radius)
     {
 		Color color = Gizmos.color;
 		var degreesInterval = 10;
 		for (int i = 0; i < 360; i+= degreesInterval) 
         {
-			Gizmos.DrawLine(pos + PointAtAngle2D(i, radius), pos + PointAtAngle2D(i + degreesInterval, radius));
+			Gizmos.DrawLine(pos + PointAtAngle(i, radius), pos + PointAtAngle(i + degreesInterval, radius));
 		}
     }
 
-    static Vector2 PointAtAngle2D(float angle, float radius) 
+    static Vector2 PointAtAngle(float angle, float radius) 
     {
 		float radians = Mathf.Deg2Rad * angle;
 		float x = radius * Mathf.Cos(radians);
@@ -22,7 +22,7 @@ public static class Gizmos2D
 		return new Vector3(x, y, 0);
 	}
 
-    public static void DrawArrow2D(Vector2 pos, Vector2 dir, float arrowHeadLength = 0.5f, float arrowHeadAngle = 20.0f)
+    public static void DrawArrow(Vector2 pos, Vector2 dir, float arrowHeadLength = 0.5f, float arrowHeadAngle = 20.0f)
 	{
 		if (dir.sqrMagnitude < 0.01f) return;
 		Gizmos.DrawRay(pos, dir);
@@ -32,10 +32,10 @@ public static class Gizmos2D
 		Gizmos.DrawRay(pos + dir, left * arrowHeadLength);
 	}
 
-	public static void DrawMagnitudeArrow2D(Vector2 pos, Vector2 direction) 
+	public static void DrawMagnitudeArrow(Vector2 pos, Vector2 direction) 
 	{
-		DrawCircle2D(pos, direction.magnitude);
-        DrawArrow2D(pos, direction);
+		DrawCircle(pos, direction.magnitude);
+        DrawArrow(pos, direction);
 	}
 }
 }

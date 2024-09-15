@@ -52,6 +52,12 @@ public static class Gizmos3D
 			Gizmos.DrawRay(pos + dir, left * arrowHeadLength);
 		}
 
+		public static void DrawMagnitudeArrow(Vector3 pos, Vector3 direction) 
+		{
+			Gizmos.DrawWireSphere(pos, direction.magnitude);
+			DrawArrow(pos, direction);
+		}
+
 		static Vector3 PointAtAngle(float angle, float radius) 
 		{
 			float radians = Mathf.Deg2Rad * angle;
