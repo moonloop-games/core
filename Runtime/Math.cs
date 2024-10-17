@@ -215,6 +215,34 @@ namespace Moonloop.Core
 			return (a * Cube) + (b * Square) + (c * t) + startPoint;
 		}
 
+		/// <summary>
+		/// Returns the tangent of the bezier curve at time t.
+		/// </summary>
+		/// <param name="t">Time of the curve between 0 and 1</param>
+		/// <param name="startPoint"></param>
+		/// <param name="startAnchor"></param>
+		/// <param name="endAnchor"></param>
+		/// <param name="endPoint"></param>
+		/// <returns></returns>
+		public static Vector3 GetBezierTangent(float t, Vector3 startPoint, Vector3 startAnchor, Vector3 endAnchor, Vector3 endPoint) 
+		{
+			t = Mathf.Clamp01(t);
+			float p1 = Mathf.Clamp01(t - 0.01f);
+			float p2 = Mathf.Clamp01(t + 0.01f);
+
+			Vector3 point1 = GetBezier(p1, startPoint, startAnchor, endAnchor, endPoint);
+			Vector3 point2 = GetBezier(p2, startPoint, startAnchor, endAnchor, endPoint);
+
+			return (point2 - point1).normalized;
+		}
+
+		public static Vector3 GetBezierNormal(float t, Vector3 startPoint, Vector3 startAnchor, Vector3 endAnchor, Vector3 endPoint)
+		{
+			Vector3 tangent = GetBezierTangent(t, startPoint, startAnchor, endAnchor, endPoint);
+			Vector3 normal = Vector3.Cross(tangent, Vector3.up);
+			return normal;
+		}
+
 		/// <summary> Clamps the given position pos to the box defined by boxCenter and boxSize </summary>
 		public static Vector3 ClampToBox(Vector3 pos, Vector3 boxCenter, Vector3 boxSize) 
 		{
