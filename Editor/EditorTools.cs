@@ -6,7 +6,6 @@ namespace Moonloop.Core.Editor
 {
     public static class EditorTools
     {
-
         public static void SetDirty(Object obj)
         {
             #if UNITY_EDITOR

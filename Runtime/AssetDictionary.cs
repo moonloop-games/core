@@ -16,7 +16,7 @@ namespace Moonloop.Core {
 	/// </summary>
 	/// <typeparam name="T"></typeparam>
 	[System.Serializable]
-	public abstract class AssetDictionary<T> : SerializedScriptableObject where T : UnityEngine.Object 
+	public abstract class AssetDictionary<T> : SerializedScriptableObject where T : UnityEngine.Object
 	{
 		[ReadOnly, ShowInInspector, SerializeField]
 		protected Dictionary<string, T> elements = new Dictionary<string, T>();
@@ -46,19 +46,26 @@ namespace Moonloop.Core {
 			}
 		}
 
-		public List<T> LoadAssetsFromAssetsFolder(string typeName, string assetFolderPath)
+		/// <summary>
+		/// Loads the assets from the assets folder and returns a list of them
+		/// </summary>
+		/// <param name="assetFolderPath">The folder path to load assets from. Example: "Assets/Data/"</param>
+		/// <param name="includeSubClasses">If true, will do a slower search to include all subclasses of the class.</param>
+		public List<T> LoadAssets(string assetFolderPath, bool includeSubClasses)
 		{
 			List<T> returnList = new List<T>();
 
-			#if UNITY_EDITOR
-			var guids = AssetDatabase.FindAssets("t:" + typeName, new[] {assetFolderPath});
+#if UNITY_EDITOR
+			string typeName = includeSubClasses ? typeof(UnityEngine.ScriptableObject).Name : typeof(T).Name;
+			var guids = AssetDatabase.FindAssets("t:" + typeName, new[] { assetFolderPath });
 			foreach (var guid in guids)
 			{
 				var assetPath = AssetDatabase.GUIDToAssetPath(guid);
-				var asset = AssetDatabase.LoadAssetAtPath(assetPath, typeof(T)) as T;
-				returnList.Add(asset);
+				var asset = AssetDatabase.LoadAssetAtPath(assetPath, typeof(T));
+				if (asset != null && asset is T typedAsset)
+					returnList.Add(typedAsset);
 			}
-			#endif
+#endif
 
 			return returnList;
 		}

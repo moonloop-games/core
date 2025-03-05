@@ -1,7 +1,9 @@
 {
     "name": "com.moonloop.core.editor",
     "rootNamespace": "",
-    "references": [],
+    "references": [
+        "GUID:5ae22b9db97c4064d8f08608aff0df7e"
+    ],
     "includePlatforms": [
         "Editor"
     ],
