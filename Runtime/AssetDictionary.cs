@@ -129,16 +129,15 @@ namespace Moonloop.Core {
 		/// <summary>
 		/// Returns a list of guids of the given elements.
 		/// </summary>
-		/// <param name="elements"></param>
-		/// <returns></returns>
-		public List<T> GetGuids(List<T> elements)
+		/// <param name="elements">The list of elements to get the guids for</param>
+		public List<string> GetGuids(List<T> elements)
 		{
-			List<T> guids = new List<T>();
+			List<string> guids = new List<string>();
 			foreach (T element in elements)
 			{
 				string guid = GetGuid(element);
 				if (!string.IsNullOrEmpty(guid))
-					guids.Add(element);
+					guids.Add(guid);
 			}
 
 			return guids;
