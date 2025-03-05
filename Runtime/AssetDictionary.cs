@@ -93,6 +93,11 @@ namespace Moonloop.Core {
 			return "";
 		}
 
+		/// <summary>
+		/// Checks if any element with the given GUID is in the library, and if so returns it.
+		/// </summary>
+		/// <param name="guid">the guid of the element youre looking for.</param>
+		/// <returns>The element matching the given guid</returns>
 		public T GetElement(string guid)
 		{
 			T element = null;
@@ -101,6 +106,42 @@ namespace Moonloop.Core {
 
 			Debug.LogError("No element was found for guid " + guid);
 			return null;
+		}
+
+		/// <summary>
+		/// Returns a list of elements that match the given guids.
+		/// </summary>
+		/// <param name="guids">List of guids of the elements you want</param>
+		/// <returns></returns>
+		public List<T> GetElements(List<string> guids)
+		{
+			List<T> elements = new List<T>();
+			foreach (string guid in guids)
+			{
+				T element = GetElement(guid);
+				if (element != null)
+					elements.Add(element);
+			}
+
+			return elements;
+		}
+
+		/// <summary>
+		/// Returns a list of guids of the given elements.
+		/// </summary>
+		/// <param name="elements"></param>
+		/// <returns></returns>
+		public List<T> GetGuids(List<T> elements)
+		{
+			List<T> guids = new List<T>();
+			foreach (T element in elements)
+			{
+				string guid = GetGuid(element);
+				if (!string.IsNullOrEmpty(guid))
+					guids.Add(element);
+			}
+
+			return guids;
 		}
 
 
