@@ -15,6 +15,23 @@ namespace Moonloop.Core
             return helperInstance.StartCoroutine(coroutine);
         }
 
+        public static void EndCoroutine(Coroutine coroutine)
+        {
+            if (coroutine == null) return;
+            
+            if (instance)
+            {
+                instance.StopCoroutine(coroutine);
+                return;
+            }
+            
+            if (persistentInstance)
+            {
+                persistentInstance.StopCoroutine(coroutine);
+                return;
+            }
+        }
+
         static CoroutineHelper EnsureInstance(bool dontDestroyOnLoad)
         {
             if (dontDestroyOnLoad)
